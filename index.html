@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Portofolio</h1>
+        <h1 class="subjudul">Tugas Akhir Membuat Website Dicoding</h1>
+        <nav>
+            <a href="#hobi">Hobi</a>
+            <a href="#pendidikan">Pendidikan</a>
+            <div class="dropdown">
+                <a class="drop" href="#karya">Karya</a>
+                <div class="drop-content">
+                    <a href="#calkulator">Kalkulator</a>
+                    <a href="#notepad">Catatan</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div id="content">
+            <article id="hobi">
+                <h3>Hobi Saya</h3>
+                <ul>
+                    <li>Programming</li>
+                    <li>Video Editing</li>
+                    <li>3D Animation</li>
+                    <li>Graphic Design</li>
+                </ul>
+            </article>
+            <article id="pendidikan">
+                <h3>Pendidikan yang ditempuh</h3>
+                <h4>Taman Kanak-kanak</h4>
+                <p>TK ISLAM AL JIHAD</p>
+                <h4>Sekolah Dasar</h4>
+                <p>SD NEGERI SETIA ASIH 03</p>
+                <h4>Sekolah Menengah Pertama</h4>
+                <p>SMP NEGERI 2 TARUMAJAYA</p>
+                <h4>Sekolah Menengah Kejuruan</h4>
+                <p>SMK NEGERI 1 TARUMAJAYA</p>
+            </article>
+            <article id="karya">
+                <h3>Program sederhana yang saya buat</h3>
+                <h4>Kalkulator</h4>
+                <div id="calkulator">
+                    <div class="flex-container-column card">
+                        <div class="display">
+
+                            <h5 id="displayNumber">0</h5>
+                        </div>
+                        <div class="flex-container-row">
+                            <div class="button clear">C</div>
+                            <div class="button delete">DEL</div>
+                            <div class="button operator">÷</div>
+                            <div class="button operator">×</div>
+                        </div>
+                        <div class="flex-container-row">
+                            <div class="button">7</div>
+                            <div class="button">8</div>
+                            <div class="button">9</div>
+                            <div class="button operator">-</div>
+                        </div>
+                        <div class="flex-container-row">
+                            <div class="button">4</div>
+                            <div class="button">5</div>
+                            <div class="button">6</div>
+                            <div class="button operator">+</div>
+                        </div>
+                        <div class="flex-container-row">
+                            <div class="button">1</div>
+                            <div class="button">2</div>
+                            <div class="button">3</div>
+                            <div class="row-wrapper"></div>
+                            <div class="button equals">=</div>
+                        </div>
+                        <div class="flex-container-row">
+                            <div class="button double-column">0</div>
+                            <div class="button">.</div>
+                            <div class="button">%</div>
+                        </div>
+                    </div>
+                </div>
+                <h4>Catatan</h4>
+                <div id="notepad">
+                    <input type="text">
+                </div>
+            </article>
+            <article></article>
+        </div>
+        <aside>
+            <img src="assets/photo.jpeg">
+            <h3 class="nama">Rafi Ahmadinejad Al Farisi</h3>
+            <p class="nama">Beginner Web Developer</p>
+        </aside>
+    </main>
+    <footer>&copy; 2022 Rafi Ahmadinejad Al Farisi</footer>
+</body>
+
+</html>
