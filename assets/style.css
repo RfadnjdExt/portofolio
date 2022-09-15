@@ -72,22 +72,23 @@ main {
 }
 
 nav {
-    display: block;
-    margin: auto;
     overflow: hidden;
     background-color: #333;
     font-family: Arial;
+    display: block;
+    margin: auto;
     width: 75%;
     border-radius: 10px;
 }
 
-nav a {
+nav a, nav button {
     float: left;
     font-size: 16px;
     color: white;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    transition: 0.3s;
 }
 
 .dropdown {
@@ -118,7 +119,6 @@ nav a:hover,
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
-    margin-top: 47px;
 }
 
 .drop-content a {
@@ -158,12 +158,13 @@ img {
     object-fit: cover;
     border-radius: 50%;
 }
-h1 {
-    margin: 10px;
+h1.judul {
+    margin-top: 100px;
+    margin: 30px 0 10px 0;
 }
 h1.subjudul {
     font-size: 1em;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
 
 p {
