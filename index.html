@@ -7,11 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="assets/style.css">
+    <script src="assets/kalkulatorv2.js" defer></script>
 </head>
 
 <body>
     <header>
-        <h1 class="judul">Portofolio</h1>
+        <h1 class="judul">About Me</h1>
         <h1 class="subjudul">Tugas Akhir Membuat Website Dicoding</h1>
         <nav>
             <a href="#hobi">Hobi</a>
@@ -30,22 +31,76 @@
             <article id="hobi">
                 <h3>Hobi Saya</h3>
                 <ul>
-                    <li>Programming</li>
-                    <li>Video Editing</li>
-                    <li>3D Animation</li>
-                    <li>Graphic Design</li>
+                    <div class="hobi-card">
+                        <li>Programming</li>
+                        <div class="hobi-content">
+                            <h4>Bahasa pemrograman yang sedang dipelajari</h4>
+                            <p>
+                                HTML - CSS - JS - PHP - Python
+                            </p>
+                        </div>
+                    </div>
+                    <div class="hobi-card">
+                        <li>Video Editing</li>
+                        <div class="hobi-content">
+                            <h4>Software yang sedang dipelajari</h4>
+                            <p>
+                                After Effects - Premiere Pro - DaVinci Resolve
+                            </p>
+                        </div>
+                    </div>
+                    <div class="hobi-card">
+                        <li>Graphic Design</li>
+                        <div class="hobi-content">
+                            <h4>Software yang sedang dipelajari</h4>
+                            <p>
+                                Photoshop - Illustrator
+                            </p>
+                        </div>
+                    </div>
+                    <div class="hobi-card">
+                        <li>3D Animation</li>
+                        <div class="hobi-content">
+                            <h4>Software yang sedang dipelajari</h4>
+                            <p>
+                                Blender - Cinema 4D
+                            </p>
+                        </div>
+                    </div>
+                    <div class="hobi-card">
+                        <li>Music</li>
+                        <div class="hobi-content">
+                            <h4>Software yang sedang dipelajari</h4>
+                            <p>
+                                FL Studio
+                            </p>
+                        </div>
+                    </div>
                 </ul>
             </article>
             <article id="pendidikan">
+
                 <h3>Pendidikan yang ditempuh</h3>
-                <h4>Taman Kanak-kanak</h4>
-                <p>TK ISLAM AL JIHAD</p>
-                <h4>Sekolah Dasar</h4>
-                <p>SD NEGERI SETIA ASIH 03</p>
-                <h4>Sekolah Menengah Pertama</h4>
-                <p>SMP NEGERI 2 TARUMAJAYA</p>
-                <h4>Sekolah Menengah Kejuruan</h4>
-                <p>SMK NEGERI 1 TARUMAJAYA</p>
+                <div class="pend-content">
+
+                    <h4>Taman Kanak-kanak</h4>
+                    <p>TK ISLAM AL JIHAD</p>
+                </div>
+                <div class="pend-content">
+
+                    <h4>Sekolah Dasar</h4>
+                    <p>SD NEGERI SETIA ASIH 03</p>
+                </div>
+                <div class="pend-content">
+
+                    <h4>Sekolah Menengah Pertama</h4>
+                    <p>SMP NEGERI 2 TARUMAJAYA</p>
+                </div>
+                <div class="pend-content">
+
+                    <h4>Sekolah Menengah Kejuruan</h4>
+                    <p>SMK NEGERI 1 TARUMAJAYA</p>
+                </div>
             </article>
             <article id="karya">
                 <h3>Program sederhana yang saya buat</h3>
@@ -53,7 +108,7 @@
                 <div id="calkulator">
                     <div class="flex-container-column card">
                         <div class="display">
-
+                            <h6 class="mini-display"></h6>
                             <h5 id="displayNumber">0</h5>
                         </div>
                         <div class="flex-container-row">
@@ -78,7 +133,6 @@
                             <div class="button">1</div>
                             <div class="button">2</div>
                             <div class="button">3</div>
-                            <div class="row-wrapper"></div>
                             <div class="button equals">=</div>
                         </div>
                         <div class="flex-container-row">
@@ -90,7 +144,7 @@
                 </div>
                 <h4>Catatan</h4>
                 <div id="notepad">
-                    <input type="text">
+                    <textarea rows="4" cols="50"></textarea>
                 </div>
             </article>
             <article></article>
@@ -98,10 +152,13 @@
         <aside>
             <img src="assets/photo.jpeg">
             <h3 class="nama">Rafi Ahmadinejad Al Farisi</h3>
-            <p class="nama">Beginner Web Developer</p>
+            <p></p>
+            <p>
+                Just an introvert that likes computer
+            </p>
         </aside>
     </main>
+    <button class="btt">Back To Top</button>
     <footer>&copy; 2022 Rafi Ahmadinejad Al Farisi</footer>
 </body>
-
 </html>

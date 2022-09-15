@@ -3,7 +3,7 @@
 }
 
 body {
-    font-family: sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 h1 {
@@ -69,6 +69,7 @@ main {
     margin: auto;
     width: 75%;
     overflow:hidden;
+    text-align: center;
 }
 
 nav {
@@ -79,6 +80,7 @@ nav {
     margin: auto;
     width: 75%;
     border-radius: 10px;
+    padding: 0px 50px
 }
 
 nav a, nav button {
@@ -109,7 +111,9 @@ nav a, nav button {
 
 nav a:hover,
 .dropdown:hover .drop {
-    background-color: red;
+    color: black;
+    background-color: white;
+    
 }
 
 .drop-content {
@@ -140,16 +144,23 @@ nav a:hover,
 
 div#content {
     float: left;
-    /* margin-left: 50px; */
 }
 
 aside {
+    overflow: hidden;
     margin-top: 10px;
     float: right;
     border-radius: 10px;
-    border: 1px solid black;
+    border: 2px solid black;
     justify-content: center;
     padding: 20px;
+    height: 180px;
+    transition: height 1.0s ease;
+}
+
+aside:hover {
+    height: 500px;
+    transition: height 1.0s ease;
 }
 
 img {
@@ -173,4 +184,74 @@ p {
 
 h3.nama {
     margin-bottom: 10px;
+}
+
+ul {
+    padding:0;
+    width:100%;
+    text-align:center;
+}
+
+li {
+    margin:10px;
+    list-style-type: none;
+    
+    padding: 5px 10px;
+    transition: 0.3s;
+    
+    display:inline-block;
+    cursor:pointer;
+    border: 1px solid #333;
+}
+
+li:hover {
+    background-color: #333;
+    color: white;
+    border-radius: 10px;
+}
+
+.btt {
+    position: fixed;
+    bottom: 10px;
+    margin: 0;
+    right: 10px;
+    background: white;
+}
+
+.hobi-content {
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity .5s linear, bottom .5s linear;
+    border: 1px solid black;
+    padding: 10px;
+    margin: 0;
+    height: 0;
+}
+
+@keyframes in {
+    from   { clip-path: inset(50px 0px);}
+    to { clip-path: inset(0px 0px);}
+}
+
+li:hover + .hobi-content {
+    animation-name: in;
+    animation-duration: 0.5s;
+    position: inherit;
+    visibility: visible;
+    opacity: 1;
+    height: 100%;
+}
+
+h4 {
+    margin: 0;
+}
+
+.hobi-card {
+    width: 500px;
+    margin: auto;
+}
+
+.pend-content {
+    margin: 50px 0px;
 }
