@@ -1,242 +1,453 @@
-<!DOCTYPE HTML>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8" />
-    <title>CSS3 Horizontal sliding menu</title>
+    <meta name="viewport" content="width=device-width" />
+    <title>My Resume</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://www.w3schools.com/w3css/4/w3.css" rel="stylesheet">
+</head>
+<body class="main-container">
+    <link href="https://fonts.googleapis.com/css?family=Cantarell" rel="stylesheet">
+    <!--link href="https://firebasestorage.googleapis.com/v0/b/hello-43816.appspot.com/o/Content%2Fcss%2Fbttn.min.css?alt=media&token=5935a194-c344-4e1e-9e47-6d05f7cde801" rel="stylesheet"-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.slim.min.js"></script>
     <style>
-        .header {
-            width: 600px;
-            height: 50px;
-            border: 1px dotted grey;
+        .main-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 10px;
+            color: #222;
+            background-color:#eeeeee;
+            font-family: 'Cantarell', sans-serif;
+        }
+        .w3-custom-theme {
+            color: #fff!important;
+            background-color: #28b78d!important;
+        }
+        .w3-text-custom-theme {
+            color: #28b78d!important;
         }
 
-        .content {
-            position: relative;
-            width: 600px;
-            height: 500px;
-            color: white;
-            background-color: #e6056f;
-            overflow: hidden;
+        .floating-button {
+            width: 55px;
+            height: 55px;
+            position: fixed;
+            bottom: 15px;
+            right: 10px;
+            /*cursor: pointer;*/
+            font-size: 30px;
+            text-align: center;
+            line-height: 55px;
         }
 
-        .item {
-            position: absolute;
-            top: 50px;
-            left: 20px;
-            width: 600px;
-            height: 400px;
-            background-color: grey;
+        .floating-button-hidden {
+            width: 35px;
+            position: fixed;
+            top:15px;
+            right: 10px;
+            /*cursor: pointer;*/
+            font-size: 30px;
+            text-align: center;
+            line-height: 55px;
         }
 
-        .navigation {
-            width: 600px;
-        }
-
-        .navigation ul {
-            /* positioning */
-            position: relative;
-            z-index: 1000;
-            /* remove the dots next to list items: */
-            list-style: none;
-            /* get rid of any default or inherited margins and padding: */
-            margin: 0;
-            padding: 0;
-
-            /* styling: */
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            font-weight: normal;
-            font-size: 15px;
-        }
-
-        /* we're using the direct descendant selectors > to ONLY affect the main menu items */
-        .navigation>ul>li {
-            /* positioning */
-            position: relative;
-            float: left;
-            /* styling: */
-            margin-right: 10px;
-        }
-
-        .navigation>ul>li>a {
-            /* positioning */
-            display: block;
-            /* styling: */
-            background-color: #2c2c2c;
-            /*  grey */
-            padding: 8px 14px;
-            text-decoration: none;
-            color: #aaaaaa;
-
-        }
-
-        .navigation>ul>li>a:hover {
-            /* styling: */
-            background-color: #666666;
-            /* grey */
-            color: #eeeeee;
-            /* light grey */
-        }
-
-        .navigation ul ul {
-
-            background-color: #e6056f;
-            /* remove. this is for illustration purposes only */
-            width: 340px;
-            /* you need a width to accommodate tertiary menus */
-
-            position: absolute;
-            z-index: 100;
-
-            height: 0;
-            overflow: hidden;
-            -webkit-transition: height 0.3s ease-in;
-            -moz-transition: height 0.3s ease-in;
-            -o-transition: height 0.3s ease-in;
-            -ms-transition: height 0.3s ease-in;
-            transition: height 0.3s ease-in;
-        }
-
-
-        /* don't display tertiary box yet */
-        .navigation>ul>li:hover ul ul,
-        .navigation>ul>li>a:hover ul ul {
-            height: 0;
-
-        }
-
-        /* tertiary drop-down box */
-        .navigation ul ul ul {
-            left: 170px;
-            width: 170px;
-
-        }
-
-        .navigation>ul>li:hover ul,
-        .navigation>ul>li>a:hover ul,
-        .navigation ul ul li:hover>ul,
-        .navigation ul ul li a:hover>ul {
-            height: 220px;
-            /* need a height to accommodate any tertiary menus */
-        }
-
-        /* drop-down item styles */
-        /* if you want different styling for tertiary menus, just copy the 4 rules below and insert an additional ul: for example: ".navigation ul ul li", becomes: ".navigation ul ul ul li" */
-
-        .navigation ul ul li {
-            background-color: #eaeaea;
-            /* grey */
-            width: 170px;
-            -webkit-transition: background-color 0.3s ease;
-            -moz-transition: background-color 0.3s ease;
-            -o-transition: background-color 0.3s ease;
-            -ms-transition: background-color 0.3s ease;
-            transition: background-color 0.3s ease;
-        }
-
-        .navigation ul ul li:hover {
-            background-color: #999;
-            /* grey */
-        }
-
-        .navigation ul ul li a {
-            display: block;
-            text-decoration: none;
-            margin: 0 12px;
-            padding: 5px 0;
-            color: #4c4c4c;
-            /* grey */
-        }
-
-        .navigation ul ul li a:hover,
-        .navigation ul ul li:hover>a {
-            color: #ffffff;
-            /* white */
-        }
-
-        .navigation ul ul ul li a {
-            border: 0 !important;
-        }
-
-        .navigation ul ul ul li+li a {
-            border-top: 1px dotted #999 !important;
-        }
-
-        .navigation ul ul li+li a {
-            border-top: 1px dotted #999;
-        }
-
-        .navigation ul ul li:hover+li a {
-            border-top: 1px solid #eaeaea;
-        }
-
-        .navigation ul ul ul li:hover+li a {
-            border: 0 !important;
-        }
-
-        .navigation ul ul ul li:hover+li {
-            border-top: 1px solid #999 !important;
+        .floating-button-mobile-hidden {
+            width: 100%;
+            position: fixed;
+            bottom: 15px;
+            right: 80px;
+            /*cursor: pointer;*/
+            font-size: 30px;
+            text-align: right;
+            line-height: 55px;
         }
     </style>
+    <script>
+        $(document).ready(function () {
+            $("#floating-button").click(function () {
+                if ($("#floating-button-hidden").height() > $(window).height()) {
+                    $("#floating-button-hidden").removeClass("floating-button-hidden");
+                    $("#floating-button-hidden").addClass("floating-button-mobile-hidden");
+                }
+                if ($("#floating-button-hidden").css("display") == "none") {
+                    $("#floating-button-hidden").show();
+                } else {
+                    $("#floating-button-hidden").hide(100);
+                }
+            });
+        });
 
-<body>
-    <div class="header">
-        <div class="navigation">
-            <ul>
-                <li><a href="#">Main - 1</a>
-                    <ul>
-                        <li><a href="#">Level 2 - 1</a></li>
-                        <li><a href="#">Level 2 - 2</a></li>
-                        <li><a href="#">Level 2 - 3</a></li>
-                        <li><a href="#">Level 2 - 4</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Main - 2</a>
-                    <ul>
-                        <li>
-                            <ul>
-                                <li><a href="#">Level 3 - 1</a></li>
-                                <li><a href="#">Level 3 - 2</a></li>
-                                <li><a href="#">Level 3 - 3</a></li>
-                                <li><a href="#">Level 3 - 4</a></li>
-                                <li><a href="#">Level 3 - 5</a></li>
-                            </ul>
-                            <a href="#">Level 2 - 1</a>
-                        </li>
-                        <li>
-                            <ul>
-                                <li><a href="#">Level 3 - 1</a></li>
-                                <li><a href="#">Level 3 - 2</a></li>
-                                <li><a href="#">Level 3 - 3</a></li>
-                                <li><a href="#">Level 3 - 4</a></li>
-                                <li><a href="#">Level 3 - 5</a></li>
-                            </ul>
-                            <a href="#">Level 2 - 2</a>
-                        </li>
-                        <li>
-                            <ul>
-                                <li><a href="#">Level 3 - 1</a></li>
-                                <li><a href="#">Level 3 - 2</a></li>
-                                <li><a href="#">Level 3 - 3</a></li>
-                                <li><a href="#">Level 3 - 4</a></li>
-                                <li><a href="#">Level 3 - 5</a></li>
-                            </ul>
-                            <a href="#">Level 2 - 3</a>
-                        </li>
-                        <li><a href="#">Level 2 - 4</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Main - 3</a></li>
-                <li><a href="#">Main - 4</a></li>
-            </ul>
+        function jumpto(id) {
+            $(document).scrollTop($("#" + id).offset().top);
+        }
+    </script>
+    <div id="container-floating" class="">
+        <div id="floating-button" class="floating-button float-button w3-opacity w3-circle w3-card-2 w3-custom-theme fa fa-bars">
+        </div>
+        <div id="floating-button-hidden" class="float-button floating-button-hidden w3-animate-opacity" style="display:none;">
+            <div class="w3-opacity w3-circle w3-card-2 w3-red fa fa-envelope-o" style="font-size: 19px; padding: 7px; margin-bottom: 5px; width: 33px; height: 33px;" onclick="jumpto('section-title')">
+            </div>
+            <div class="w3-opacity w3-circle w3-card-2 w3-blue fa fa-suitcase" style="font-size: 19px; padding: 7px; margin-bottom: 5px; width: 33px; height: 33px;" onclick="jumpto('section-experience')">
+            </div>
+            <div class="w3-opacity w3-circle w3-card-2 w3-green fa fa-university" style="font-size: 19px; padding: 7px; margin-bottom: 5px; width: 33px; height: 33px;" onclick="jumpto('section-education')">
+            </div>
+            <div class="w3-opacity w3-circle w3-card-2 w3-yellow fa fa-area-chart" style="font-size: 19px; padding: 7px; margin-bottom: 5px; width: 33px; height: 33px;" onclick="jumpto('section-skill')">
+            </div>
+            <div class="w3-opacity w3-circle w3-card-2 w3-purple fa fa-diamond" style="font-size: 19px; padding: 7px; margin-bottom: 5px; width: 33px; height: 33px;" onclick="jumpto('section-project')">
+            </div>
+            <div class="w3-opacity w3-circle w3-card-2 w3-black fa fa-download" style="font-size: 19px; padding: 7px; margin-bottom: 5px; width: 33px; height: 33px;" onclick="">
+            </div>
         </div>
     </div>
 
-    <div class="content">
-        <div class="item">
+    <div class="w3-row-padding">
+        <div class="w3-third w3-padding" style="margin-bottom: 16px;">
+            <div id="section-title" class="w3-container ">
+                <img id="img-profile" class="w3-circle" style="display: block; margin: 20px auto; width: 180px; height: 180px; border-radius: 180px;" src="https://firebasestorage.googleapis.com/v0/b/hello-43816.appspot.com/o/Content%2F13428499_1157433974306743_7050599796386561394_n.jpg?alt=media&token=21e9f9bb-8798-466f-9eea-22f93562e11e">
+                <h1 class="" style="display: block;line-height: 1em;overflow: hidden;text-align: center;">Authapoth Chuenarrom</h1>
+                <h2 class="" style="display: block;line-height: 1em;overflow: hidden;text-align: center;">System developer</h2>
+            </div>
+            <div class="">
+                <div class="w3-row">
+                    <span>
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x w3-text-red"></i>
+                            <i class="fa fa-mobile fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <span class="w3-text-blue">Mobile:</span>
+                        <span style="text-decoration: underline; cursor: pointer;">
+                            <a href="tel:0830502688">083-0502688</a>
+                        </span>
+                    </span>
+                </div>
+                <div class="w3-row">
+                    <span>
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x w3-text-teal"></i>
+                            <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <span class="w3-text-blue">E-Mail:</span>
+                        <span style="text-decoration: underline; cursor: pointer;">
+                            <a href="mailto:authapoth.c@gmail.com">authapoth.c@gmail.com</a>
+                        </span>
+                    </span>
+                </div>
+                <div class="w3-row">
+                    <span>
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x w3-text-green"></i>
+                            <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <span class="w3-text-blue">LinkedIn:</span>
+                        <span style="text-decoration: underline; cursor: pointer;">
+                            <a href="https://www.linkedin.com/in/autha-chuenarrom-48a678120">Autha-Chuenarrom</a>
+                        </span>
+                    </span>
+                </div>
+                <div class="w3-row">
+                    <span>
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x w3-text-black"></i>
+                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <span class="w3-text-blue">Github:</span>
+                        <span style="text-decoration: underline; cursor: pointer;">
+                            <a href="https://github.com/authapothc">github.com/authapothc</a>
+                        </span>
+                    </span>
+                </div>
+                <div class="w3-row">
+                    <span>
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x w3-text-blue"></i>
+                            <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <span class="w3-text-blue">Facebook:</span>
+                        <span style="text-decoration: underline; cursor: pointer;">
+                            <a href="https://www.facebook.com/autha.chuenarrom">autha.chuenarrom</a>
+                        </span>
+                    </span>
+                </div>
+            </div>
+
+            </div>
+        <div class="w3-twothird w3-container">
+            <div id="section-experience" class="w3-container w3-card-2 w3-white w3-margin-bottom ">
+                <h2 class="w3-text-grey w3-padding-16" style="margin-top: 16px;"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-custom-theme"></i>Work Experience</h2>
+                <div class="w3-container">
+                    <h4 class="w3-opacity"><b>Web Developer / Hoya Lens Thailand,Fujitsu System Thailand</b></h4>
+                    <h6 class="w3-text-custom-theme"><i class="fa fa-calendar fa-fw w3-margin-right"></i>May 2015 - <span class="w3-tag w3-custom-theme w3-round">Current</span></h6>
+                    <p>Mostly create web applications for users in Hoya Lens Company who work on site worldwide such as Thailand, Vietnam, Japan, Italy, etc</p>
+                    <hr>
+                </div>
+                <div class="w3-container">
+                    <h4 class="w3-opacity"><b>System Developer / Home Product Center PCL (aka. Homepro)</b></h4>
+                    <h6 class="w3-text-custom-theme"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Oct 2012 - Mar 2015</h6>
+                    <p>Start from Junior Programmer until Lead Programmer as well as Database Administrator and System Analyst in some projects.</p>
+                    <hr>
+                </div>
+                <div class="w3-container">
+                    <h4 class="w3-opacity"><b>Junior Programmer / AD System Asia TH</b></h4>
+                    <h6 class="w3-text-custom-theme"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Jul 2012 - Oct 2012</h6>
+                    <p>First job after graduated</p>
+                    <hr>
+                </div>
+                <div class="w3-container">
+                    <h4 class="w3-opacity"><b>Trainee / One to One Contact Co.TH</b></h4>
+                    <h6 class="w3-text-custom-theme"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Mar 2011 - May 2011</h6>
+                    <p>Help Desk, Network, and Admin trainee</p>
+                </div>
+            </div>
+
+            <div id="section-education" class="w3-container w3-card-2 w3-white w3-margin-bottom ">
+                <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-university fa-fw w3-margin-right w3-xxlarge w3-text-custom-theme"></i>Education</h2>
+                <div class="w3-container">
+                    <h4 class="w3-opacity"><b>Prince of Songkha University</b></h4>
+                    <h6 class="w3-text-custom-theme"><i class="fa fa-calendar fa-fw w3-margin-right"></i>2008 - 2012</h6>
+                    <p>B.Sc. Major in Information and Communication Technology</p>
+                    <hr>
+                </div>
+                <div class="w3-container">
+                    <h4 class="w3-opacity"><b>Suratthani School</b></h4>
+                    <h6 class="w3-text-custom-theme"><i class="fa fa-calendar fa-fw w3-margin-right"></i>2006 - 2008</h6>
+                    <p>Sci-Math Programs</p><br>
+                </div>
+            </div>
+
+            <div id="section-skill" class="w3-container w3-card-2 w3-white w3-margin-bottom ">
+                <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-area-chart fa-fw w3-margin-right w3-xxlarge w3-text-custom-theme"></i>Technical Skill</h2>
+
+                <div class="">
+                    <h2>Platform</h2>
+                    <div class="w3-light-grey w3-small" style="margin: 16px 5px;">
+                        <div class="w3-container w3-custom-theme" style="text-align:left;width:90%;">Web Application / Web Service</div>
+                    </div>
+                    <div class="w3-light-grey w3-small" style="margin: 16px 5px;">
+                        <div class="w3-container w3-custom-theme" style="text-align:left;width:70%;">Mobile Web Application</div>
+                    </div>
+                    <div class="w3-light-grey w3-small" style="margin: 16px 5px;">
+                        <div class="w3-container w3-custom-theme" style="text-align:left;width:60%;">Windows Mobile</div>
+                    </div>
+                    <div class="w3-light-grey w3-small" style="margin: 16px 5px;">
+                        <div class="w3-container w3-custom-theme" style="text-align:left;width:60%;">Windows Application</div>
+                    </div>
+                    <div class="w3-light-grey w3-small" style="margin: 16px 5px;">
+                        <div class="w3-container w3-custom-theme" style="text-align:left;width:60%;">Batch Processing</div>
+                    </div>
+                    <div class="w3-light-grey w3-small" style="margin: 16px 5px;">
+                        <div class="w3-container w3-custom-theme" style="text-align:left;width:50%;">Android (Naive)</div>
+                    </div>
+                </div>
+
+                <div class="">
+                    <h2>Framework</h2>
+                    <div class="w3-light-grey w3-small" style="margin: 16px 5px;">
+                        <div class="w3-container w3-custom-theme" style="text-align:left;width:90%;">HTML+CSS+JS</div>
+                    </div>
+                    <div class="w3-light-grey w3-small" style="margin: 16px 5px;">
+                        <div class="w3-container w3-custom-theme" style="text-align:left;width:90%;">.Net Framework CF/3.5/4/4.5</div>
+                    </div>
+                    <div class="w3-light-grey w3-small" style="margin: 16px 5px;">
+                        <div class="w3-container w3-custom-theme" style="text-align:left;width:80%;">Jquery,Ajax</div>
+                    </div>
+                    <div class="w3-light-grey w3-small" style="margin: 16px 5px;">
+                        <div class="w3-container w3-custom-theme" style="text-align:left;width:80%;">ASP.Net Webform/MVC</div>
+                    </div>
+                    <div class="w3-light-grey w3-small" style="margin: 16px 5px;">
+                        <div class="w3-container w3-custom-theme" style="text-align:left;width:80%;">Devexpress Web Controls</div>
+                    </div>
+                    <div class="w3-light-grey w3-small" style="margin: 16px 5px;">
+                        <div class="w3-container w3-custom-theme" style="text-align:left;width:70%;">Windows Form</div>
+                    </div>
+                    <div class="w3-light-grey w3-small" style="margin: 16px 5px;">
+                        <div class="w3-container w3-custom-theme" style="text-align:left;width:60%;">Android Native (Java)</div>
+                    </div>
+                </div>
+                
+                <div class="">
+                    <h2>Database</h2>
+                    <div class="w3-light-grey w3-small" style="margin: 16px 5px;">
+                        <div class="w3-container w3-custom-theme" style="text-align:left;width:80%;">Oracle</div>
+                    </div>
+                    <div class="w3-light-grey w3-small" style="margin: 16px 5px;">
+                        <div class="w3-container w3-custom-theme" style="text-align:left;width:80%;">SQL Server</div>
+                    </div>
+                    <div class="w3-light-grey w3-small" style="margin: 16px 5px;">
+                        <div class="w3-container w3-custom-theme" style="text-align:left;width:60%;">Mysql</div>
+                    </div>
+                    <div class="w3-light-grey w3-small" style="margin: 16px 5px;">
+                        <div class="w3-container w3-custom-theme" style="text-align:left;width:50%;">Postgresql</div>
+                    </div>
+                    <div class="w3-light-grey w3-small" style="margin: 16px 5px;">
+                        <div class="w3-container w3-custom-theme" style="text-align:left;width:30%;">SQLite</div>
+                    </div>
+                </div>
+                
+                <div class="">
+                    <h2>Report Tool</h2>
+                    <div class="w3-light-grey w3-small" style="margin: 16px 5px;">
+                        <div class="w3-container w3-custom-theme" style="text-align:left;width:80%;">Crystal Reports</div>
+                    </div>
+                    <div class="w3-light-grey w3-small" style="margin: 16px 5px;">
+                        <div class="w3-container w3-custom-theme" style="text-align:left;width:60%;">Devexpress Reports</div>
+                    </div>
+                    <div class="w3-light-grey w3-small" style="margin: 16px 5px;">
+                        <div class="w3-container w3-custom-theme" style="text-align:left;width:50%;">Intermec PLC</div>
+                    </div>
+                    <div class="w3-light-grey w3-small" style="margin: 16px 5px;">
+                        <div class="w3-container w3-custom-theme" style="text-align:left;width:20%;">Qlikview</div>
+                    </div>
+                </div>
+
+                <div class="">
+                    <h2>Development Environment</h2>
+                    <div class="w3-light-grey w3-small" style="margin: 16px 5px;">
+                        <div class="w3-container w3-custom-theme" style="text-align:left;width:90%;">Visual Studio 8/10/12/15/Code</div>
+                    </div>
+                    <div class="w3-light-grey w3-small" style="margin: 16px 5px;">
+                        <div class="w3-container w3-custom-theme" style="text-align:left;width:70%;">Eclipse</div>
+                    </div>
+                    <div class="w3-light-grey w3-small" style="margin: 16px 5px;">
+                        <div class="w3-container w3-custom-theme" style="text-align:left;width:70%;">Team Foundation Server</div>
+                    </div>
+                    <div class="w3-light-grey w3-small" style="margin: 16px 5px;">
+                        <div class="w3-container w3-custom-theme" style="text-align:left;width:60%;">GIT Extension</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="section-project" class="w3-container w3-card-2 w3-white w3-margin-bottom ">
+                <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-diamond fa-fw w3-margin-right w3-xxlarge w3-text-custom-theme"></i>Project</h2>
+                <div class="w3-container">
+                    <h4 class="w3-opacity"><b>Portal Web</b></h4>
+                    <div class="w3-row">
+                        <h6 class="w3-quarter w3-text-custom-theme" style="margin:0px;"><i class="fa fa-home fa-fw w3-margin-right"></i>Hoya Lens</h6>
+                        <h6 class="w3-third w3-text-custom-theme" style="margin:0px;"><i class="fa fa-laptop fa-fw w3-margin-right"></i>Web</h6>
+                    </div>
+                    <p>Portal system; the first page for staff in various departments to login. Have many widgets and task to facilitate the staff.</p>
+                    <hr>
+                </div>
+
+                <div class="w3-container page-split">
+                    <h4 class="w3-opacity"><b>Price Simulation</b></h4>
+                    <div class="w3-row">
+                        <h6 class="w3-quarter w3-text-custom-theme" style="margin:0px;"><i class="fa fa-home fa-fw w3-margin-right"></i>Hoya Lens</h6>
+                        <h6 class="w3-third w3-text-custom-theme" style="margin:0px;"><i class="fa fa-laptop fa-fw w3-margin-right"></i>Web</h6>
+                    </div>
+                    <p>The calculating system and report system about the company’s expense.</p>
+                    <hr>
+                </div>
+
+                <div class="w3-container page-split">
+                    <h4 class="w3-opacity"><b>Lens Tracking</b></h4>
+                    <div class="w3-row">
+                        <h6 class="w3-quarter w3-text-custom-theme" style="margin:0px;"><i class="fa fa-home fa-fw w3-margin-right"></i>Hoya Lens</h6>
+                        <h6 class="w3-third w3-text-custom-theme" style="margin:0px;"><i class="fa fa-laptop fa-fw w3-margin-right"></i>Web</h6>
+                    </div>
+                    <p>System for checking the goods order with vendors.</p>
+                    <hr>
+                </div>
+
+                <div class="w3-container">
+                    <h4 class="w3-opacity"><b>Web Budget</b></h4>
+                    <div class="w3-row">
+                        <h6 class="w3-quarter w3-text-custom-theme" style="margin:0px;"><i class="fa fa-home fa-fw w3-margin-right"></i>Hoya Lens</h6>
+                        <h6 class="w3-third w3-text-custom-theme" style="margin:0px;"><i class="fa fa-laptop fa-fw w3-margin-right"></i>Web</h6>
+                    </div>
+                    <p>System to summarize annual budget, total budget and allocate company’s budget.</p>
+                    <hr>
+                </div>
+
+                <div class="w3-container">
+                    <h4 class="w3-opacity"><b>Web Template for .NET 4.5</b></h4>
+                    <div class="w3-row">
+                        <h6 class="w3-quarter w3-text-custom-theme" style="margin:0px;"><i class="fa fa-home fa-fw w3-margin-right"></i>Homepro</h6>
+                        <h6 class="w3-third w3-text-custom-theme" style="margin:0px;"><i class="fa fa-laptop fa-fw w3-margin-right"></i>Web Core</h6>
+                    </div>
+                    <p>Design and create the standard for all projects after 2012 including create core for web application, mobile application,  Authentication, Load Balance, i13n for users in HomePro Company, HomePro Malaysia, MegaHome และ Market Village.</p>
+                    <hr>
+                </div>
+
+                <div class="w3-container">
+                    <h4 class="w3-opacity"><b>Price Checker</b></h4>
+                    <div class="w3-row">
+                        <h6 class="w3-quarter w3-text-custom-theme" style="margin:0px;"><i class="fa fa-home fa-fw w3-margin-right"></i>Homepro</h6>
+                        <h6 class="w3-third w3-text-custom-theme" style="margin:0px;"><i class="fa fa-laptop fa-fw w3-margin-right"></i>Windows Applciation</h6>
+                    </div>
+                    <p>Scan barcode system for checking goods price for installing on Kiosk machine in stores.</p>
+                    <hr>
+                </div>
+
+                <div class="w3-container">
+                    <h4 class="w3-opacity"><b>Mobile Information</b></h4>
+                    <div class="w3-row">
+                        <h6 class="w3-quarter w3-text-custom-theme" style="margin:0px;"><i class="fa fa-home fa-fw w3-margin-right"></i>Homepro</h6>
+                        <h6 class="w3-third w3-text-custom-theme" style="margin:0px;"><i class="fa fa-laptop fa-fw w3-margin-right"></i>Android</h6>
+                    </div>
+                    <p>Tablet application for the staff inside the stores. The application will gather the necessary information about usage instructions such as the promotion price, opening purchase order, checking stock, logistic planning. It will interface data with the IT system inside the organization such as Sales, Member Management, and Delivery Service.</p>
+                    <hr>
+                </div>
+
+                <div class="w3-container">
+                    <h4 class="w3-opacity"><b>Mobile Management</b></h4>
+                    <div class="w3-row">
+                        <h6 class="w3-quarter w3-text-custom-theme" style="margin:0px;"><i class="fa fa-home fa-fw w3-margin-right"></i>Homepro</h6>
+                        <h6 class="w3-third w3-text-custom-theme" style="margin:0px;"><i class="fa fa-laptop fa-fw w3-margin-right"></i>Mobile Web</h6>
+                    </div>
+                    <p>Controlling system for all handheld equipment in stores also setting authority to use applications in equipment.</p>
+                    <hr>
+                </div>
+
+                <div class="w3-container">
+                    <h4 class="w3-opacity"><b>Delivery Service</b></h4>
+                    <div class="w3-row">
+                        <h6 class="w3-quarter w3-text-custom-theme" style="margin:0px;"><i class="fa fa-home fa-fw w3-margin-right"></i>Homepro</h6>
+                        <h6 class="w3-third w3-text-custom-theme" style="margin:0px;"><i class="fa fa-laptop fa-fw w3-margin-right"></i>Web,Intermec Handheld</h6>
+                    </div>
+                    <p>Logistic system, setting logistic time schedule and client appointments, setting vehicle schedule for logistic staff, installers, and follow working results also the internal logistic such as transporting from DC and transporting between stores.</p>
+                    <hr>
+                </div>
+
+                <div class="w3-container">
+                    <h4 class="w3-opacity"><b>Stock Management (Goods recieve / Physicial count)</b></h4>
+                    <div class="w3-row">
+                        <h6 class="w3-quarter w3-text-custom-theme" style="margin:0px;"><i class="fa fa-home fa-fw w3-margin-right"></i>Homepro</h6>
+                        <h6 class="w3-third w3-text-custom-theme" style="margin:0px;"><i class="fa fa-laptop fa-fw w3-margin-right"></i>Intermec Handheld, Web</h6>
+                    </div>
+                    <p>Stock, checking, annual stock checking, damaged goods, return goods, goods delivery and more by using barcode scanning Intermec Handheld equipment, Interface data, SAP and Oracle.</p>
+                    <hr>
+                </div>
+
+                <div class="w3-container">
+                    <h4 class="w3-opacity"><b>Label Printing</b></h4>
+                    <div class="w3-row">
+                        <h6 class="w3-quarter w3-text-custom-theme" style="margin:0px;"><i class="fa fa-home fa-fw w3-margin-right"></i>Homepro</h6>
+                        <h6 class="w3-third w3-text-custom-theme" style="margin:0px;"><i class="fa fa-laptop fa-fw w3-margin-right"></i>Intermec Printer, Web</h6>
+                    </div>
+                    <p>Price tagging system for tagging price on goods shelves, Promotion goods labels and also goods labels by using IPL Command from web applications.</p>
+                    <hr>
+                </div>
+
+                <div class="w3-container">
+                    <h4 class="w3-opacity"><b>Customer Service</b></h4>
+                    <div class="w3-row">
+                        <h6 class="w3-quarter w3-text-custom-theme" style="margin:0px;"><i class="fa fa-home fa-fw w3-margin-right"></i>Homepro</h6>
+                        <h6 class="w3-third w3-text-custom-theme" style="margin:0px;"><i class="fa fa-laptop fa-fw w3-margin-right"></i>Web, Web Service</h6>
+                    </div>
+                    <p>Managing members’s information system,Home Card, cash coupons for members, redeeming points and privilege and also other promotions. The system has interface data with the bank for launching promotions for credit cards.</p>
+                    <hr>
+                </div>
+
+                <div class="w3-container">
+                    <h4 class="w3-opacity"><b>Property Management</b></h4>
+                    <div class="w3-row">
+                        <h6 class="w3-quarter w3-text-custom-theme" style="margin:0px;"><i class="fa fa-home fa-fw w3-margin-right"></i>Homepro</h6>
+                        <h6 class="w3-third w3-text-custom-theme" style="margin:0px;"><i class="fa fa-laptop fa-fw w3-margin-right"></i>Web</h6>
+                    </div>
+                    <p>Managing store system, issuing land lease agreements, invoices, licenses and else.</p>
+                </div>
+                <br />
+            </div>
         </div>
     </div>
-
+    
 </body>
-
 </html>
